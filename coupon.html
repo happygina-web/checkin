@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<title>교육비 할인 쿠폰 · 챌린지아카데미어학원</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="page">
+  <div class="crop logo"><img src="img/logo-horizontal.png" alt="챌린지아카데미어학원"></div>
+
+  <section id="view-loading" class="view"><div class="loader" aria-label="불러오는 중"></div></section>
+
+  <section id="view-notice" class="view" hidden>
+    <div class="notice"><p id="notice-msg" class="msg"></p></div>
+  </section>
+
+  <section id="view-coupon" class="view" hidden>
+    <h1 class="name"><span id="c-name"></span> 학부모님,</h1>
+    <p class="thx">참석해 주셔서 감사합니다.</p>
+
+    <div id="ticket" class="ticket">
+      <div class="k">교육비 할인 쿠폰</div>
+      <div id="c-amount" class="amt"></div>
+      <div class="exp"><span id="c-exp-label">유효기간 </span><b id="c-exp"></b></div>
+      <div class="crop wm" aria-hidden="true"><img src="img/logo-emblem.png" alt=""></div>
+    </div>
+
+    <div class="info">
+      <div class="row"><span>쿠폰번호</span><span id="c-code"></span></div>
+      <div class="row"><span>행사</span><span id="c-event"></span></div>
+    </div>
+
+    <div class="spacer"></div>
+    <div id="use-area">
+      <p class="hint">결제 시 데스크에 보여주세요</p>
+      <button id="use" class="btn" type="button">직원 확인 후 사용하기</button>
+    </div>
+  </section>
+</main>
+
+<div id="sheet" class="sheet-backdrop" hidden>
+  <form id="sheet-form" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" novalidate>
+    <h2 id="sheet-title" class="sheet-title">직원 확인</h2>
+    <p class="sheet-sub">비밀번호 4자리를 입력해 주세요</p>
+    <input id="pin" class="pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-label="직원 비밀번호">
+    <p id="sheet-error" class="error" role="alert"></p>
+    <div class="sheet-actions">
+      <button id="sheet-cancel" class="btn secondary" type="button">취소</button>
+      <button id="sheet-ok" class="btn" type="submit">확인</button>
+    </div>
+  </form>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/format.js"></script>
+<script src="js/api.js"></script>
+<script src="js/mock-api.js"></script>
+<script src="js/coupon.js"></script>
+</body>
+</html>
