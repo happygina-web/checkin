@@ -69,6 +69,11 @@ button, input { font-family: inherit; letter-spacing: inherit; }
 .input:focus { border-bottom-color: var(--blue); }
 .input::placeholder { color: #b0b8c1; }
 
+.benefit { margin: 16px 0 4px; padding: 14px 16px; border-radius: 12px; background: #f2f6ff; text-align: center; }
+.benefit-head { margin: 0; font-size: 16px; line-height: 1.5; color: var(--sub); }
+.benefit-head strong { color: var(--navy); }
+.benefit-desc { margin: 4px 0 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
+
 .consent { margin-top: 24px; }
 .consent-row { display: flex; align-items: flex-start; gap: 10px; }
 .check { display: flex; align-items: flex-start; gap: 10px; flex: 1; cursor: pointer; font-size: 15px; line-height: 1.5; color: var(--muted); }

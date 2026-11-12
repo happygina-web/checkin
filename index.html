@@ -26,6 +26,11 @@
   <form id="view-form" class="view" novalidate hidden>
     <h1 class="title"><span id="form-event"></span><br>참석 확인</h1>
 
+    <div id="benefit" class="benefit" hidden>
+      <p class="benefit-head">참석 혜택 <strong>교육비 할인권 <span id="benefit-amount"></span></strong></p>
+      <p class="benefit-desc">참석 완료를 누르면 할인권이 신청되어 카카오톡으로 발급돼요</p>
+    </div>
+
     <label class="label" for="name">학생 이름</label>
     <input class="input" id="name" name="name" type="text" maxlength="20" autocomplete="off" placeholder="김민준">
 
@@ -37,17 +42,17 @@
         <label class="check">
           <input id="consent" type="checkbox">
           <span class="box" aria-hidden="true"></span>
-          <span>참석 확인 및 쿠폰 발송을 위한 개인정보 수집·이용에 동의합니다</span>
+          <span>참석 확인 및 참석 혜택 신청·발급을 위한 개인정보 수집·이용에 동의합니다</span>
         </label>
         <button id="more" class="more" type="button" aria-expanded="false" aria-controls="legal">자세히</button>
       </div>
       <div id="legal" class="legal" hidden>
         <dl>
           <dt>수집 항목</dt><dd>학생 이름·학부모 휴대폰 번호</dd>
-          <dt>목적</dt><dd>행사 참석 확인 및 할인 쿠폰 발송</dd>
+          <dt>목적</dt><dd>행사 참석 확인 및 참석 혜택(할인권) 발급</dd>
           <dt>보관 기간</dt><dd>5년</dd>
         </dl>
-        <p>동의를 거부할 수 있으나 이 경우 체크인과 쿠폰 발송이 불가합니다</p>
+        <p>동의를 거부할 수 있으나 이 경우 체크인과 혜택 발급이 불가합니다</p>
       </div>
     </div>
 

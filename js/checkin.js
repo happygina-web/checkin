@@ -107,6 +107,13 @@
       var e = res.event;
       if (!e.open) return showNotice(window.Fmt.errorMessage('CLOSED'), e.name);
       $('form-event').textContent = e.name;
+      // Coupon events: checking in is an explicit request for the benefit (Kakao only allows
+      // coupon 알림톡 for benefits the user acted to receive, not unilateral marketing gifts).
+      if (e.couponOn) {
+        $('benefit-amount').textContent = window.Fmt.formatWon(e.amount);
+        $('benefit').hidden = false;
+        $('submit').textContent = '참석 완료 · 혜택 신청';
+      }
       document.title = e.name + ' 참석 확인';
       show('view-form');
     }).catch(function () { showNotice(window.Fmt.errorMessage('NETWORK'), '', true); });
