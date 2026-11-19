@@ -68,6 +68,9 @@ button, input { font-family: inherit; letter-spacing: inherit; }
 }
 .input:focus { border-bottom-color: var(--blue); }
 .input::placeholder { color: #b0b8c1; }
+.input.review { font-size: 17px; line-height: 1.5; resize: vertical; border: 2px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.input.review:focus { border-color: var(--blue); }
+.req { color: var(--blue); font-weight: 600; }
 
 .benefit { margin: 16px 0 4px; padding: 14px 16px; border-radius: 12px; background: #f2f6ff; text-align: center; }
 .benefit-head { margin: 0; font-size: 16px; line-height: 1.5; color: var(--sub); }

@@ -3,6 +3,9 @@
   var $ = function (id) { return document.getElementById(id); };
   var eventId = window.queryParam('e');
   var views = ['view-loading', 'view-notice', 'view-form', 'view-done'];
+  // 참관수업: a short review is required before check-in (stored with the attendance row).
+  var REVIEW_EVENT_TYPES = ['참관수업'];
+  var reviewRequired = false;
 
   function show(id) {
     for (var i = 0; i < views.length; i++) $(views[i]).hidden = views[i] !== id;
@@ -31,9 +34,10 @@
   function clearError() { setError(''); }
 
   // Same rules as the server, so obvious mistakes are caught without a round trip.
-  function validate(name, phoneDigits, consent) {
+  function validate(name, phoneDigits, consent, review) {
     if (!name) return 'BAD_NAME';
     if (!/^010\d{8}$/.test(phoneDigits)) return 'BAD_PHONE';
+    if (reviewRequired && review.length < 5) return 'NO_REVIEW';
     if (!consent) return 'NO_CONSENT';
     return '';
   }
@@ -62,12 +66,13 @@
     var name = $('name').value.trim();
     var phone = $('phone').value.replace(/\D/g, '');
     var consent = $('consent').checked;
-    var invalid = validate(name, phone, consent);
+    var review = $('review').value.trim();
+    var invalid = validate(name, phone, consent, review);
     setError(invalid);
     if (invalid) return;
 
     setLoading(true);
-    window.callApi('checkin', { eventId: eventId, studentName: name, phone: phone, consent: true })
+    window.callApi('checkin', { eventId: eventId, studentName: name, phone: phone, consent: true, review: reviewRequired ? review : '' })
       .then(function (res) {
         if (res.ok) return showDone(res);
         setLoading(false);
@@ -83,6 +88,7 @@
   function bindForm() {
     // Any edit to a field clears the message about it (or any other) so stale errors never linger.
     $('name').addEventListener('input', clearError);
+    $('review').addEventListener('input', clearError);
     $('consent').addEventListener('change', clearError);
     $('phone').addEventListener('input', function () {
       clearError();
@@ -114,6 +120,8 @@
         $('benefit').hidden = false;
         $('submit').textContent = '참석 완료 · 쿠폰 신청';
       }
+      reviewRequired = REVIEW_EVENT_TYPES.indexOf(e.type) >= 0;
+      $('review-box').hidden = !reviewRequired;
       document.title = e.name + ' 참석 확인';
       show('view-form');
     }).catch(function () { showNotice(window.Fmt.errorMessage('NETWORK'), '', true); });
