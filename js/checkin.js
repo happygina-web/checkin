@@ -112,7 +112,7 @@
       if (e.couponOn) {
         $('benefit-amount').textContent = window.Fmt.formatWon(e.amount);
         $('benefit').hidden = false;
-        $('submit').textContent = '참석 완료 · 혜택 신청';
+        $('submit').textContent = '참석 완료 · 쿠폰 신청';
       }
       document.title = e.name + ' 참석 확인';
       show('view-form');
