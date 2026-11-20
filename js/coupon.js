@@ -14,12 +14,33 @@
     show('view-notice');
   }
 
+  // 감사 쿠폰 (sent by the director from the sheet menu, not tied to an event):
+  // thank-you wording, no '행사' label, and a closing line under the coupon title.
+  function applyGiftWording() {
+    var thx = document.querySelector('.thx');
+    if (thx) thx.textContent = '항상 응원 해주셔서 감사합니다!';
+    var value = $('c-event');
+    var row = value.parentNode;
+    var label = row.firstElementChild;
+    if (label && label !== value) label.hidden = true;
+    row.style.justifyContent = 'center';
+    value.style.textAlign = 'center';
+    if (!$('c-gift-note')) {
+      var note = document.createElement('p');
+      note.id = 'c-gift-note';
+      note.className = 'hint';
+      note.textContent = '원장의 사랑과 마음을 담아 보냅니다!';
+      row.parentNode.appendChild(note);
+    }
+  }
+
   function render(c) {
     var Fmt = window.Fmt;
     $('c-name').textContent = c.studentName;
     $('c-amount').textContent = Fmt.formatWon(c.amount);
     $('c-code').textContent = c.code;
     $('c-event').textContent = c.eventName;
+    if (c.gift) applyGiftWording();
 
     var usable = c.state === 'unused';
     $('c-exp-label').hidden = !usable;
